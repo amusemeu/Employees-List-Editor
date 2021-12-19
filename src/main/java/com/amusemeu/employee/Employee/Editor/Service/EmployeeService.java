@@ -1,7 +1,7 @@
 package com.amusemeu.employee.Employee.Editor.Service;
 
-import com.amusemeu.employee.Employee.Editor.EmployeeRepository.EmployeeRepository;
-import com.amusemeu.employee.Employee.Editor.Model.Employee;
+import com.amusemeu.employee.Employee.Editor.Repositories.EmployeeRepository;
+import com.amusemeu.employee.Employee.Editor.Models.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +32,8 @@ public class EmployeeService {
         Optional<Employee> row = employeeRepository.findById(employee.getId());
         if (row.isPresent()) {
             Employee item = row.get();
-            if (employee.getDepartment_id() != null) {
-                item.setDepartment_id(employee.getDepartment_id());
+            if (employee.getDepartments() != null) {
+                item.setDepartments(employee.getDepartments());
             }
             employeeRepository.save(item);
         }

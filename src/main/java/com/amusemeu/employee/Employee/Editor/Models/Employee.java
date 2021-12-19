@@ -1,14 +1,17 @@
-package com.amusemeu.employee.Employee.Editor.Model;
+package com.amusemeu.employee.Employee.Editor.Models;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Employee {
 
     @Id
-    @SequenceGenerator(name = "employees", sequenceName = "employees")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees")
+    @SequenceGenerator(name = "employees_sequence", sequenceName = "employees_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_sequence")
     @Column(name = "id")
     private Long id;
 
@@ -21,19 +24,22 @@ public class Employee {
     @Column(name = "phoneNumber")
     private int phoneNumber;
 
-    @Column(name = "department_id")
-    private Integer department_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
+    @JsonBackReference
+    private Departments departments;
 
     public Employee(){
 
     }
 
-    public Employee(Long id, String name, String surname, int phoneNumber, Integer department_id) {
+    public Employee(Long id, String name, String surname, int phoneNumber, Departments departments) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
-        this.department_id = department_id;
+        this.departments = departments;
+
     }
 
     public Long getId() {
@@ -68,12 +74,13 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getDepartment_id() {
-        return department_id;
+
+    public Departments getDepartments() {
+        return departments;
     }
 
-    public void setDepartment_id(Integer department_id) {
-        this.department_id = department_id;
+    public void setDepartments(Departments departments) {
+        this.departments = departments;
     }
 
 }

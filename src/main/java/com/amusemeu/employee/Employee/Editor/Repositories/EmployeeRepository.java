@@ -1,6 +1,6 @@
-package com.amusemeu.employee.Employee.Editor.EmployeeRepository;
+package com.amusemeu.employee.Employee.Editor.Repositories;
 
-import com.amusemeu.employee.Employee.Editor.Model.Employee;
+import com.amusemeu.employee.Employee.Editor.Models.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

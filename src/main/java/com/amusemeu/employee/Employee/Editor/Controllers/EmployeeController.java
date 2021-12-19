@@ -1,10 +1,9 @@
-package com.amusemeu.employee.Employee.Editor.EmployeeController;
+package com.amusemeu.employee.Employee.Editor.Controllers;
 
-import com.amusemeu.employee.Employee.Editor.Model.Employee;
+import com.amusemeu.employee.Employee.Editor.Models.Employee;
 import com.amusemeu.employee.Employee.Editor.Service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -20,6 +19,7 @@ public class EmployeeController {
     public List<Employee> list(){
         return employeeService.list();
     }
+
     @PostMapping(path = "item")
     public List<Employee> add(@RequestBody Employee employee){
         employeeService.add(employee);
@@ -31,8 +31,8 @@ public class EmployeeController {
         employeeService.delete(id);
     }
 
-    @PostMapping(path = "itemu")
-    public void delete(@RequestBody Employee employee){
+    @PutMapping(path = "item")
+    public void update(@RequestBody Employee employee){
         employeeService.update(employee);
     }
 
